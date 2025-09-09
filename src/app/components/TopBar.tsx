@@ -4,9 +4,9 @@ import React, { useEffect, useState } from 'react';
 
 import { toast } from 'react-toastify';
 
-const pagesBasePath = process.env.PAGES_BASE_PATH;
-
 const TopBar = () => {
+    const pagesBasePath = process.env.NEXT_PUBLIC_PAGES_BASE_PATH;
+
     const [isdark, setIsdark] = useState('false');
 
     useEffect(() => {

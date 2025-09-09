@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 const portfolioList = [
     {
         name: 'feelsafe-backend',
@@ -244,7 +242,6 @@ const portfolioList = [
 ];
 
 const Portfolio = () => {
-    const [imgSrc, setImgSrc] = useState('');
     return (
         <div id='myPortfolioId'>
             <div className='items-center text-center'>
