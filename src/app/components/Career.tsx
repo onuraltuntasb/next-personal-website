@@ -9,12 +9,14 @@ interface CareerStep {
     new: boolean;
 }
 
+const pagesBasePath = process.env.PAGES_BASE_PATH;
+
 const careerStepList: CareerStep[] = [
     {
         title: 'Osmangazi University',
         description: 'B.S. in Computer Science, earned May 2021',
         location: 'Eskişehir, Turkey',
-        img: '/assets/images/university.png',
+        img: `${pagesBasePath}/assets/images/university.png`,
         content: `In my four years, my computer science professors helped me to understand engineering
                 principles and how to deal with real world with all those group projects. It was not
                 best practiceses or best education but real world is not much that different that. They
@@ -29,7 +31,7 @@ const careerStepList: CareerStep[] = [
         title: 'Herogı Software',
         description: 'Software Engineer Intern',
         location: 'Istanbul, Turkey (remote)',
-        img: '/assets/images/herogi.png',
+        img: `${pagesBasePath}/assets/images/herogi.png`,
         content: `It was my first software development job. I passed my time trying to understand how
                 complex architectures works and how to build them from small piecies. My main job was
                 migrate to legacy angular ui to react.js and yes, i started to development as a frontend
@@ -42,7 +44,7 @@ const careerStepList: CareerStep[] = [
         title: 'Herogı Software',
         description: 'Fullstack Software Engineer',
         location: 'Istanbul, Turkey (remote)',
-        img: '/assets/images/herogi.png',
+        img: `${pagesBasePath}/assets/images/herogi.png`,
         content: `I touched most parts of the project and learnt to many things about production ready
                 apps. Migration of legacy ui to new ui finished and new features finally added to new
                 ui. It was hard process to migrate one platform to completely new architecture but it
@@ -55,7 +57,7 @@ const careerStepList: CareerStep[] = [
         title: 'Freelancer',
         description: 'Freelance Fullstack Software Engineer',
         location: 'Istanbul, Turkey (remote)',
-        img: '/assets/images/freelancer.png',
+        img: `${pagesBasePath}/assets/images/freelancer.png`,
         content: `After my seperation from herogi, i decided to improve my backend skills so i leaned how
                 to design scalable apps, microservices and cloud computing mostly. In this time i worked
                 as a freelancer in contracted jobs. I focused concepts more than programming in this

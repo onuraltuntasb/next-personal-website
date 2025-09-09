@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react';
 
 import { toast } from 'react-toastify';
 
+const pagesBasePath = process.env.PAGES_BASE_PATH;
+
 const TopBar = () => {
     const [isdark, setIsdark] = useState('false');
 
@@ -115,14 +117,14 @@ const TopBar = () => {
                         }}>
                         {isdark === 'true' ? (
                             <img
-                                src={'/assets/images/linkedin-dark.png'}
+                                src={`${pagesBasePath}/assets/images/linkedin-dark.png`}
                                 width={32}
                                 alt='linkedin'
                                 className='rounded shadow'
                             />
                         ) : (
                             <img
-                                src={'/assets/images/linkedin-light.png'}
+                                src={`${pagesBasePath}/assets/images/linkedin-light.png`}
                                 width={32}
                                 alt='linkedin'
                                 className='rounded shadow'
@@ -136,14 +138,14 @@ const TopBar = () => {
                         }}>
                         {isdark === 'true' ? (
                             <img
-                                src={'/assets/images/medium-dark.png'}
+                                src={`${pagesBasePath}/assets/images/medium-dark.png`}
                                 width={32}
                                 alt='medium'
                                 className='rounded shadow'
                             />
                         ) : (
                             <img
-                                src={'/assets/images/medium-light.png'}
+                                src={`${pagesBasePath}/assets/images/medium-light.png`}
                                 width={32}
                                 alt='medium'
                                 className='rounded shadow'
@@ -157,14 +159,14 @@ const TopBar = () => {
                         }}>
                         {isdark === 'true' ? (
                             <img
-                                src={'/assets/images/github-dark.png'}
+                                src={`${pagesBasePath}/assets/images/github-dark.png`}
                                 width={32}
                                 alt='github'
                                 className='rounded shadow'
                             />
                         ) : (
                             <img
-                                src={'/assets/images/github-light.png'}
+                                src={`${pagesBasePath}/assets/images/github-light.png`}
                                 width={32}
                                 alt='github'
                                 className='rounded shadow'
@@ -227,14 +229,14 @@ const TopBar = () => {
                                     }}>
                                     {isdark === 'true' ? (
                                         <img
-                                            src={'/assets/images/linkedin-dark.png'}
+                                            src={`${pagesBasePath}/assets/images/linkedin-dark.png`}
                                             width={32}
                                             alt='linkedin'
                                             className='rounded shadow'
                                         />
                                     ) : (
                                         <img
-                                            src={'/assets/images/linkedin-light.png'}
+                                            src={`${pagesBasePath}/assets/images/linkedin-light.png`}
                                             width={32}
                                             alt='linkedin'
                                             className='rounded shadow'
@@ -250,14 +252,14 @@ const TopBar = () => {
                                     }}>
                                     {isdark === 'true' ? (
                                         <img
-                                            src={'/assets/images/medium-dark.png'}
+                                            src={`${pagesBasePath}/assets/images/medium-dark.png`}
                                             width={32}
                                             alt='medium'
                                             className='rounded shadow'
                                         />
                                     ) : (
                                         <img
-                                            src={'/assets/images/medium-light.png'}
+                                            src={`${pagesBasePath}/assets/images/medium-light.png`}
                                             width={32}
                                             alt='medium'
                                             className='rounded shadow'
@@ -273,14 +275,14 @@ const TopBar = () => {
                                     }}>
                                     {isdark === 'true' ? (
                                         <img
-                                            src={'/assets/images/github-dark.png'}
+                                            src={`${pagesBasePath}/assets/images/github-dark.png`}
                                             width={32}
                                             alt='github'
                                             className='rounded shadow'
                                         />
                                     ) : (
                                         <img
-                                            src={'/assets/images/github-light.png'}
+                                            src={`${pagesBasePath}/assets/images/github-light.png`}
                                             width={32}
                                             alt='github'
                                             className='rounded shadow'
