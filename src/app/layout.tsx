@@ -1,6 +1,16 @@
+import type { Metadata } from 'next';
+import Head from 'next/head';
+
 import TopBar from './components/TopBar';
 import './globals.css';
 import { Slide, ToastContainer } from 'react-toastify';
+
+export const metadata: Metadata = {
+    title: 'Onur Altuntas',
+    icons: {
+        icon: '/favicon.ico'
+    }
+};
 
 export default function RootLayout({
     children
