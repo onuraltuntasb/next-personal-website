@@ -10,8 +10,6 @@ const TopBar = () => {
     const [isdark, setIsdark] = useState('false');
 
     useEffect(() => {
-        console.log('🚀 ~ TopBar.tsx:10 ~ TopBar ~ pagesBasePath:', pagesBasePath);
-
         setIsdark(localStorage.getItem('isdark') ?? 'false');
     }, []);
 

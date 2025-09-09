@@ -243,7 +243,7 @@ const portfolioList = [
 
 const Portfolio = () => {
     return (
-        <div id='myPortfolioId'>
+        <div data-aos='fade-up' id='myPortfolioId'>
             <div className='items-center text-center'>
                 <h1 className='text-2xl'>----- My Portfolio -----</h1>
                 <p className='text-xl'>

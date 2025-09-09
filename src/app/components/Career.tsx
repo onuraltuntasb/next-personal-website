@@ -18,14 +18,9 @@ const Career = () => {
             description: 'B.S. in Computer Science, earned May 2021',
             location: 'Eskişehir, Turkey',
             img: `${pagesBasePath}/assets/images/university.png`,
-            content: `In my four years, my computer science professors helped me to understand engineering
-                principles and how to deal with real world with all those group projects. It was not
-                best practiceses or best education but real world is not much that different that. They
-                made me realise how i could build my self in this world not just for tech sector.
-                Especially, some of our professors who have their own software company they really
-                helped us to understand how tech business works actually. I had my first job experience
-                as intern in IT departent of Eczacıbaşı . It was necessary to graduate and it was fun to
-                see corparate world`,
+            content: `During my four years of study, my computer science professors helped me understand engineering principles and how to navigate real-world challenges through various group projects. It wasn’t always about best practices or the ideal education, but the real world isn’t that different. They made me realize how I could build myself not only for the tech sector but for the world in general.
+
+            Especially valuable were the professors who run their own software companies; they gave us genuine insight into how the tech business actually operates. I also gained my first job experience as an intern in the IT department of Eczacıbaşı. It was a graduation requirement, but it was also exciting to get a glimpse of the corporate world.`,
             new: false
         },
         {
@@ -46,12 +41,9 @@ const Career = () => {
             description: 'Fullstack Software Engineer',
             location: 'Istanbul, Turkey (remote)',
             img: `${pagesBasePath}/assets/images/herogi.png`,
-            content: `I touched most parts of the project and learnt to many things about production ready
-                apps. Migration of legacy ui to new ui finished and new features finally added to new
-                ui. It was hard process to migrate one platform to completely new architecture but it
-                gave me some experience of reverse engineering. I also touched devops parts (docker,
-                CI/CD) and server managements(aws). Even if I not a fan of java world a learned a lot
-                about jvm because of core part of our product was running on scala/jvm`,
+            content: `It was my first software development job. I spent my time trying to understand how complex architectures work and how to build them from smaller pieces. My main responsibility was migrating a legacy Angular UI to React.js, so I started my development career as a frontend developer.
+
+            Although my focus was on the frontend, I improved my backend skills by working with parts of the architecture—maintaining systems, fixing issues, testing, and creating simple components.`,
             new: false
         },
         {
@@ -59,23 +51,15 @@ const Career = () => {
             description: 'Freelance Fullstack Software Engineer',
             location: 'Istanbul, Turkey (remote)',
             img: `${pagesBasePath}/assets/images/freelancer.png`,
-            content: `After my seperation from herogi, i decided to improve my backend skills so i leaned how
-                to design scalable apps, microservices and cloud computing mostly. In this time i worked
-                as a freelancer in contracted jobs. I focused concepts more than programming in this
-                period to understand core parts of modern product development.`,
+            content: `I decided to improve my backend skills by learning how to design scalable applications, microservices, and cloud computing. During this time, I worked as a freelancer on contracted projects. I focused more on understanding key concepts than on programming itself, aiming to grasp the core aspects of modern product development.`,
             new: true
         }
     ];
 
     return (
-        <div className='container mx-auto' id='myJourneyId'>
-            {/* carreer section */}
+        <div data-aos='fade-up' className='container mx-auto' id='myJourneyId'>
             <div className='items-center text-center'>
                 <h1 className='text-2xl'>----- My Journey -----</h1>
-                {/* <p className='text-xl'>
-                    Hey!👋I’m Onur and I’m a Software Engineer for over -4- years. I’m currently working as a freelancer
-                    in Turkey.
-                </p> */}
             </div>
             <div className='grid-col-12 grid gap-y-12 pt-6'>
                 <ul className='steps steps-vertical'>

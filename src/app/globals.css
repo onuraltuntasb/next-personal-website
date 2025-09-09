@@ -5,6 +5,7 @@
         dark --prefersdark;
 }
 @plugin "tailwindcss-animate";
+@import 'aos/dist/aos.css';
 
 /* Prevent ripple animation */
 .btn::after {

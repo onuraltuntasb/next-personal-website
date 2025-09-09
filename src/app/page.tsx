@@ -1,16 +1,25 @@
 'use client';
 
+import { useEffect } from 'react';
+
 import Career from './components/Career';
 import Portfolio from './components/Portfolio';
+import Aos from 'aos';
 
 export default function Home() {
+    useEffect(function () {
+        Aos.init({ duration: 1000 });
+    }, []);
+
     return (
         <div className='@container mx-auto px-6 py-6'>
             {/* hero section */}
 
-            <div className='grid-col-6 @md:grid-col-12 gap-px-6 grid items-center text-center md:text-left'>
+            <div
+                data-aos='fade-up'
+                className='grid-col-6 @md:grid-col-12 gap-px-6 grid items-center text-center md:text-left'>
                 <div className='col-start-1 col-end-4 @md:col-start-4 @md:col-end-8'>
-                    <div>
+                    <div data-aos='fade-left'>
                         <h1 className='text-5xl font-bold'>Software Engineer!</h1>
                         <p className='py-6 text-xl'>
                             Hey!👋I’m Onur and I’m a Software Engineer for over -4- years.
@@ -19,7 +28,9 @@ export default function Home() {
                         {/* <button className='btn btn-primary'>Get Started</button> */}
                     </div>
                 </div>
-                <div className='col-start-4 col-end-6 hidden @md:col-start-8 @md:col-end-12 @md:block'>
+                <div
+                    data-aos='fade-right'
+                    className='col-start-4 col-end-6 hidden @md:col-start-8 @md:col-end-12 @md:block'>
                     <img
                         src={'https://miro.medium.com/v2/resize:fill:176:176/1*CkAvM56aWhs_7EfsvRxlOw.png'}
                         width={250}
