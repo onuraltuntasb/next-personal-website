@@ -6,6 +6,8 @@ const nextConfig: NextConfig = {
   output: 'export',
   basePath: repoName,
   assetPrefix: repoName,
+  // to debug on production
+  swcMinify: false, 
 };
 
 export default nextConfig;

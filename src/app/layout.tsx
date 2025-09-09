@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Head from 'next/head';
 
 import TopBar from './components/TopBar';
 import './globals.css';
@@ -8,7 +7,7 @@ import { Slide, ToastContainer } from 'react-toastify';
 export const metadata: Metadata = {
     title: 'Onur Altuntas',
     icons: {
-        icon: `${process.env.PAGES_BASE_PATH}/favicon.ico`
+        icon: `${process.env.NEXT_PUBLIC_PAGES_BASE_PATH}/favicon.ico`
     }
 };
 
