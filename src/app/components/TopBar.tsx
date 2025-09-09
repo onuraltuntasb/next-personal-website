@@ -18,7 +18,6 @@ const TopBar = () => {
     const scrollToView = (id: string, e: any) => {
         e.preventDefault();
         let el = document.getElementById(id);
-        console.log('el :', el);
         if (el) {
             el.scrollIntoView({ block: 'start', behavior: 'smooth', inline: 'start' });
         }
