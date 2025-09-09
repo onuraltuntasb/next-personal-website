@@ -1,5 +1,6 @@
 import TopBar from './components/TopBar';
 import './globals.css';
+import { Slide, ToastContainer } from 'react-toastify';
 
 export default function RootLayout({
     children
@@ -13,6 +14,19 @@ export default function RootLayout({
                     {' '}
                     <TopBar />
                     <main>{children}</main>
+                    <ToastContainer
+                        position='bottom-right'
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={true}
+                        closeOnClick={false}
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                        theme='dark'
+                        transition={Slide}
+                    />
                 </body>
             </html>
         </>
