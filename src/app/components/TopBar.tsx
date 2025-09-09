@@ -6,15 +6,21 @@ import { toast } from 'react-toastify';
 
 const TopBar = () => {
     const pagesBasePath = process.env.NEXT_PUBLIC_PAGES_BASE_PATH;
-
-    const [isDark, setisDark] = useState(() => {
-        // Initialize from localStorage, fallback to false if not set
-        const saved = localStorage.getItem('isDark');
-        return saved ? JSON.parse(saved) : JSON.stringify(false);
-    });
+    const [isDark, setIsDark] = useState(false);
 
     useEffect(() => {
-        localStorage.setItem('isDark', JSON.stringify(isDark));
+        // Only run in the browser
+        if (typeof window !== 'undefined') {
+            const saved = localStorage.getItem('isdark');
+            setIsDark(saved ? JSON.parse(saved) : JSON.stringify(false));
+        }
+    }, []);
+
+    useEffect(() => {
+        // Avoid running on first render if window is not ready
+        if (typeof window !== 'undefined') {
+            localStorage.setItem('isdark', JSON.stringify(isDark));
+        }
     }, [isDark]);
 
     const scrollToView = (id: string, e: any) => {
@@ -110,13 +116,13 @@ const TopBar = () => {
             </div>
             <div className='navbar-end'>
                 <div className='hidden sm:block'>
-                    {/* {isDark === 'true' ? 'true' : 'false'} */}
+                    {/* {isDark === 'true' ? 'true' : false} */}
                     <button
                         className='btn mr-2 btn-square'
                         onClick={() => {
                             window.open('https://www.linkedin.com/in/onur-altuntas1/', '_blank');
                         }}>
-                        {isDark === 'false' ? (
+                        {isDark === false ? (
                             <img
                                 src={`${pagesBasePath}/assets/images/linkedin-dark.png`}
                                 width={32}
@@ -137,7 +143,7 @@ const TopBar = () => {
                         onClick={() => {
                             window.open('https://medium.com/@onuraltuntasbusiness_99398', '_blank');
                         }}>
-                        {isDark === 'false' ? (
+                        {isDark === false ? (
                             <img
                                 src={`${pagesBasePath}/assets/images/medium-dark.png`}
                                 width={32}
@@ -158,7 +164,7 @@ const TopBar = () => {
                         onClick={() => {
                             window.open('https://github.com/onuraltuntasb', '_blank');
                         }}>
-                        {isDark === 'false' ? (
+                        {isDark === false ? (
                             <img
                                 src={`${pagesBasePath}/assets/images/github-dark.png`}
                                 width={32}
@@ -182,7 +188,7 @@ const TopBar = () => {
                         className='theme-controller'
                         value='dark'
                         onChange={() => {
-                            isDark === 'false' ? setisDark('true') : setisDark('false');
+                            isDark === false ? setIsDark(true) : setIsDark(false);
                         }}
                     />
                     {/* sun icon */}
@@ -228,7 +234,7 @@ const TopBar = () => {
                                     onClick={() => {
                                         window.open('https://www.linkedin.com/in/onur-altuntas1/', '_blank');
                                     }}>
-                                    {isDark === 'false' ? (
+                                    {isDark === false ? (
                                         <img
                                             src={`${pagesBasePath}/assets/images/linkedin-dark.png`}
                                             width={32}
@@ -251,7 +257,7 @@ const TopBar = () => {
                                     onClick={() => {
                                         window.open('https://medium.com/@onuraltuntasbusiness_99398', '_blank');
                                     }}>
-                                    {isDark === 'false' ? (
+                                    {isDark === false ? (
                                         <img
                                             src={`${pagesBasePath}/assets/images/medium-dark.png`}
                                             width={32}
@@ -274,7 +280,7 @@ const TopBar = () => {
                                     onClick={() => {
                                         window.open('https://github.com/onuraltuntasb', '_blank');
                                     }}>
-                                    {isDark === 'false' ? (
+                                    {isDark === false ? (
                                         <img
                                             src={`${pagesBasePath}/assets/images/github-dark.png`}
                                             width={32}
