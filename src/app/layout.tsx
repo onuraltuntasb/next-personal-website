@@ -8,7 +8,7 @@ import { Slide, ToastContainer } from 'react-toastify';
 export const metadata: Metadata = {
     title: 'Onur Altuntas',
     icons: {
-        icon: '/favicon.ico'
+        icon: `${process.env.PAGES_BASE_PATH}/favicon.ico`
     }
 };
 
