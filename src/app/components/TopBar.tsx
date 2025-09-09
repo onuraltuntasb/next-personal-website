@@ -6,22 +6,32 @@ import { toast } from 'react-toastify';
 
 const TopBar = () => {
     const pagesBasePath = process.env.NEXT_PUBLIC_PAGES_BASE_PATH;
-    const [isDark, setIsDark] = useState(false);
+    const [isDark, setisDark] = useState(false);
+
+    const getTheme = () => {
+        if (typeof window !== 'undefined') {
+            const ls = localStorage.getItem('isDark');
+            if (ls) {
+                return JSON.parse(ls);
+            } else {
+                localStorage.setItem('isDark', JSON.stringify(false));
+                return false;
+            }
+        }
+    };
 
     useEffect(() => {
-        // Only run in the browser
         if (typeof window !== 'undefined') {
-            const saved = localStorage.getItem('isdark');
-            setIsDark(saved ? JSON.parse(saved) : JSON.stringify(false));
+            const ls = getTheme();
+            if (ls) {
+                document.querySelector('html')?.setAttribute('data-theme', 'dark');
+                setisDark(true);
+            } else {
+                document.querySelector('html')?.setAttribute('data-theme', 'default');
+                setisDark(false);
+            }
         }
     }, []);
-
-    useEffect(() => {
-        // Avoid running on first render if window is not ready
-        if (typeof window !== 'undefined') {
-            localStorage.setItem('isdark', JSON.stringify(isDark));
-        }
-    }, [isDark]);
 
     const scrollToView = (id: string, e: any) => {
         e.preventDefault();
@@ -122,7 +132,7 @@ const TopBar = () => {
                         onClick={() => {
                             window.open('https://www.linkedin.com/in/onur-altuntas1/', '_blank');
                         }}>
-                        {isDark === false ? (
+                        {isDark ? (
                             <img
                                 src={`${pagesBasePath}/assets/images/linkedin-dark.png`}
                                 width={32}
@@ -143,7 +153,7 @@ const TopBar = () => {
                         onClick={() => {
                             window.open('https://medium.com/@onuraltuntasbusiness_99398', '_blank');
                         }}>
-                        {isDark === false ? (
+                        {isDark ? (
                             <img
                                 src={`${pagesBasePath}/assets/images/medium-dark.png`}
                                 width={32}
@@ -164,7 +174,7 @@ const TopBar = () => {
                         onClick={() => {
                             window.open('https://github.com/onuraltuntasb', '_blank');
                         }}>
-                        {isDark === false ? (
+                        {isDark ? (
                             <img
                                 src={`${pagesBasePath}/assets/images/github-dark.png`}
                                 width={32}
@@ -188,7 +198,14 @@ const TopBar = () => {
                         className='theme-controller'
                         value='dark'
                         onChange={() => {
-                            isDark === false ? setIsDark(true) : setIsDark(false);
+                            const ls = getTheme();
+                            if (ls) {
+                                localStorage.setItem('isDark', JSON.stringify(false));
+                                setisDark(false);
+                            } else {
+                                localStorage.setItem('isDark', JSON.stringify(true));
+                                setisDark(true);
+                            }
                         }}
                     />
                     {/* sun icon */}
@@ -234,7 +251,7 @@ const TopBar = () => {
                                     onClick={() => {
                                         window.open('https://www.linkedin.com/in/onur-altuntas1/', '_blank');
                                     }}>
-                                    {isDark === false ? (
+                                    {isDark ? (
                                         <img
                                             src={`${pagesBasePath}/assets/images/linkedin-dark.png`}
                                             width={32}
@@ -257,7 +274,7 @@ const TopBar = () => {
                                     onClick={() => {
                                         window.open('https://medium.com/@onuraltuntasbusiness_99398', '_blank');
                                     }}>
-                                    {isDark === false ? (
+                                    {isDark ? (
                                         <img
                                             src={`${pagesBasePath}/assets/images/medium-dark.png`}
                                             width={32}
@@ -280,7 +297,7 @@ const TopBar = () => {
                                     onClick={() => {
                                         window.open('https://github.com/onuraltuntasb', '_blank');
                                     }}>
-                                    {isDark === false ? (
+                                    {isDark ? (
                                         <img
                                             src={`${pagesBasePath}/assets/images/github-dark.png`}
                                             width={32}
