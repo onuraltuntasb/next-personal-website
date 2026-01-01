@@ -5,7 +5,7 @@ import './globals.css';
 import { Slide, ToastContainer } from 'react-toastify';
 
 export const metadata: Metadata = {
-    title: 'aaa',
+    title: 'onur altuntas',
     icons: {
         icon: `${process.env.NEXT_PUBLIC_PAGES_BASE_PATH}/favicon.ico`
     }
