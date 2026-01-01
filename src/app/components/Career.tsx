@@ -45,15 +45,15 @@ const Career = () => {
 
             Although my focus was on the frontend, I improved my backend skills by working with parts of the architecture—maintaining systems, fixing issues, testing, and creating simple components.`,
             new: false
-        },
-        {
-            title: 'Freelancer',
-            description: 'Freelance Fullstack Software Engineer',
-            location: 'Istanbul, Turkey (remote)',
-            img: `${pagesBasePath}/assets/images/freelancer.png`,
-            content: `I decided to improve my backend skills by learning how to design scalable applications, microservices, and cloud computing. During this time, I worked as a freelancer on contracted projects. I focused more on understanding key concepts than on programming itself, aiming to grasp the core aspects of modern product development.`,
-            new: true
         }
+        // {
+        //     title: 'Freelancer',
+        //     description: 'Freelance Fullstack Software Engineer',
+        //     location: 'Istanbul, Turkey (remote)',
+        //     img: `${pagesBasePath}/assets/images/freelancer.png`,
+        //     content: `I decided to improve my backend skills by learning how to design scalable applications, microservices, and cloud computing. During this time, I worked as a freelancer on contracted projects. I focused more on understanding key concepts than on programming itself, aiming to grasp the core aspects of modern product development.`,
+        //     new: true
+        // }
     ];
 
     return (

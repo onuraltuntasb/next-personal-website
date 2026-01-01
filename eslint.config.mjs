@@ -3,11 +3,8 @@ import eslintJs from '@eslint/js';
 
 import eslintConfigPrettier from 'eslint-config-prettier';
 import eslintPluginImport from 'eslint-plugin-import';
-import eslintPluginPromise from 'eslint-plugin-promise';
 import eslintPluginReact from 'eslint-plugin-react';
-// import tailwind from 'eslint-plugin-tailwindcss';
-//NOTE: eslint-plugin-tailwindcss package is using tailwind config v3 right now after update we can add updated package.
-import globals from 'globals';
+import tailwind from 'eslint-plugin-tailwindcss';
 import { dirname } from 'path';
 import typescriptEslint from 'typescript-eslint';
 import { fileURLToPath } from 'url';
@@ -15,61 +12,93 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const compat = new FlatCompat({
-    baseDirectory: __dirname
-});
+// FlatCompat allows using legacy ESLint configs with flat config
+const compat = new FlatCompat({ baseDirectory: __dirname });
 
-const eslintConfig = [
-    ...compat.extends('next/core-web-vitals', 'next/typescript'),
+export default [
+    // Extend Next.js defaults (optional now, we can add later)
+    // ...compat.extends('next/core-web-vitals'),
 
-    //NOTE: my addings over nextjs default eslint config
-    {
-        files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}']
-    },
-    {
-        languageOptions: {
-            ecmaVersion: 'latest',
-            globals: { ...globals.browser, ...globals.node }
-        }
-    },
+    // Recommended JavaScript rules
+    eslintJs.configs.recommended,
+
+    // TypeScript recommended rules
+    ...typescriptEslint.configs.recommended,
+
+    // React rules
+    eslintPluginReact.configs.flat.recommended,
+    eslintPluginReact.configs.flat['jsx-runtime'],
+
+    // Top-level React settings (version detect)
     {
         settings: {
-            react: {
-                version: 'detect'
-            }
+            react: { version: 'detect' }
         }
     },
-    eslintJs.configs.recommended,
-    eslintPluginImport.flatConfigs.recommended,
-    ...typescriptEslint.configs.recommended,
-    eslintPluginPromise.configs['flat/recommended'],
-    eslintPluginReact.configs.flat.recommended,
-    //NOTE: it's just makes eslint aware of new jsx-transform r17 feature.(using jsx without import react top of every file)
-    eslintPluginReact.configs.flat['jsx-runtime'],
-    eslintConfigPrettier,
-    //NOTE: check top of page
-    // ...tailwind.configs['flat/recommended'],
 
+    // File-specific rules
     {
+        files: ['**/*.{ts,tsx}'],
+        languageOptions: {
+            ecmaVersion: 'latest',
+            parserOptions: {
+                project: './tsconfig.json'
+            }
+        },
         rules: {
-            'no-unused-vars': 'off',
-            'classnames-order': 'off',
+            '@typescript-eslint/no-explicit-any': 'off',
+            '@typescript-eslint/no-unused-vars': 'off',
+            '@typescript-eslint/no-unused-expressions': 'off',
             'react/react-in-jsx-scope': 'off',
             'react-hooks/exhaustive-deps': 'off',
             'react/display-name': 'off',
-            'react/prop-types': 'off',
-            'newline-before-return': 'error',
-            '@typescript-eslint/no-explicit-any': 'warn',
-            '@typescript-eslint/no-unused-vars': 'off',
-            '@typescript-eslint/no-unused-expressions': 'off',
-            'tailwindcss/no-custom-classname': 'off',
-            'import/no-unresolved': 'off',
-            'import/no-named-as-default': 'off'
+            'react/prop-types': 'off'
         }
     },
-    {
-        ignores: ['node_modules/**', '.next/**', 'out/**', 'build/**', 'next-env.d.ts']
-    }
-];
 
-export default eslintConfig;
+    //"tailwind spesific rules"
+    //"eslint-plugin-tailwindcss" still in beta for tailwind v4 so don't use rules for now, it still uses flatconfig...
+    {
+        files: ['**/*.{js,ts,jsx,tsx}'],
+        plugins: { tailwind },
+        rules: {
+            //'tailwindcss/no-custom-classname': 'warn'
+        }
+    },
+
+    //eslint-plugin spesfic rules
+    {
+        files: ['**/*.{js,ts,jsx,tsx}'],
+        plugins: { import: eslintPluginImport },
+        rules: {
+            //My custom overrides
+            'import/no-unresolved': 'off',
+            'import/no-named-as-default': 'off',
+
+            // Some recommended rules from import/recommended
+            'import/no-absolute-path': 'error',
+            'import/no-dynamic-require': 'error',
+            'import/export': 'error'
+        },
+        settings: {
+            'import/resolver': {
+                node: { extensions: ['.js', '.jsx', '.ts', '.tsx'] }
+            }
+        }
+    },
+
+    {
+        ignores: [
+            '.github/**',
+            'node_modules/**',
+            '.next/**',
+            'out/**',
+            'build/**',
+            'next-env.d.ts',
+            'eslint.config.mjs'
+        ]
+    },
+
+    //prettier integration
+    eslintConfigPrettier
+];

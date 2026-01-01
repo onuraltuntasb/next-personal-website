@@ -1,13 +1,13 @@
 {
-  /**
-   * These are the extensions recommended by the workspace. The workspace recommendations are necessary ones
-   * you can add another formatters or snippet extensions also.
-   *
-   * See https://go.microsoft.com/fwlink/?LinkId=827846 to learn about workspace recommendations.
-   **/
-  "recommendations": [
-    "mikestead.dotenv", // ? https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig
-    "dbaeumer.vscode-eslint", // ? https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
-    "esbenp.prettier-vscode" // ? https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
-  ]
+    /**
+     * These are the extensions recommended by the workspace. The workspace recommendations are necessary ones
+     * you can add another formatters or snippet extensions also.
+     *
+     * See https://go.microsoft.com/fwlink/?LinkId=827846 to learn about workspace recommendations.
+     **/
+    "recommendations": [
+        "mikestead.dotenv", // ? https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig
+        "dbaeumer.vscode-eslint", // ? https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
+        "esbenp.prettier-vscode" // ? https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
+    ]
 }
