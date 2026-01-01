@@ -11,7 +11,7 @@ export default function Home() {
         Aos.init({ duration: 1000 });
     }, []);
 
-    //trigger for action
+    //trigger1 for action
 
     return (
         <div className='@container mx-auto px-6 py-6'>
