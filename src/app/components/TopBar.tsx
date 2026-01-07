@@ -8,6 +8,8 @@ const TopBar = () => {
     const pagesBasePath = process.env.NEXT_PUBLIC_PAGES_BASE_PATH;
     const [isDark, setisDark] = useState(false);
 
+    //TODO: migrate theme-controller to seperate hook (not flickering version)
+
     const getTheme = () => {
         if (typeof window !== 'undefined') {
             const ls = localStorage.getItem('isDark');
@@ -201,9 +203,12 @@ const TopBar = () => {
                             const ls = getTheme();
                             if (ls) {
                                 localStorage.setItem('isDark', JSON.stringify(false));
+                                document.querySelector('html')?.setAttribute('data-theme', 'default');
                                 setisDark(false);
                             } else {
                                 localStorage.setItem('isDark', JSON.stringify(true));
+                                document.querySelector('html')?.setAttribute('data-theme', 'dark');
+
                                 setisDark(true);
                             }
                         }}
