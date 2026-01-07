@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 
+import { ThemeProvider } from 'next-themes';
+
 import TopBar from './components/TopBar';
 import './globals.css';
 import { Slide, ToastContainer } from 'react-toastify';
@@ -18,24 +20,31 @@ export default function RootLayout({
 }>) {
     return (
         <>
-            <html data-theme='default' className='h-screen' lang='en'>
+            <html lang='en' suppressHydrationWarning>
                 <body id='app' className='h-screen'>
-                    {' '}
-                    <TopBar />
-                    <main>{children}</main>
-                    <ToastContainer
-                        position='bottom-right'
-                        autoClose={5000}
-                        hideProgressBar={false}
-                        newestOnTop={true}
-                        closeOnClick={false}
-                        rtl={false}
-                        pauseOnFocusLoss
-                        draggable
-                        pauseOnHover
-                        theme='dark'
-                        transition={Slide}
-                    />
+                    <ThemeProvider
+                        attribute='data-theme'
+                        defaultTheme='light' // fallback theme
+                        enableSystem={false}
+                        storageKey='theme' // localStorage key
+                    >
+                        <TopBar />
+
+                        {children}
+                        <ToastContainer
+                            position='bottom-right'
+                            autoClose={5000}
+                            hideProgressBar={false}
+                            newestOnTop={true}
+                            closeOnClick={false}
+                            rtl={false}
+                            pauseOnFocusLoss
+                            draggable
+                            pauseOnHover
+                            theme='dark'
+                            transition={Slide}
+                        />
+                    </ThemeProvider>
                 </body>
             </html>
         </>

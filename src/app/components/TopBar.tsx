@@ -2,38 +2,24 @@
 
 import React, { useEffect, useState } from 'react';
 
+import { useTheme } from 'next-themes';
+
 import { toast } from 'react-toastify';
 
 const TopBar = () => {
     const pagesBasePath = process.env.NEXT_PUBLIC_PAGES_BASE_PATH;
     const [isDark, setisDark] = useState(false);
 
-    //TODO: migrate theme-controller to seperate hook (not flickering version)
-
-    const getTheme = () => {
-        if (typeof window !== 'undefined') {
-            const ls = localStorage.getItem('isDark');
-            if (ls) {
-                return JSON.parse(ls);
-            } else {
-                localStorage.setItem('isDark', JSON.stringify(false));
-                return false;
-            }
-        }
-    };
+    const [mounted, setMounted] = useState(false);
+    const { theme, setTheme, resolvedTheme } = useTheme(); // use NextThemes mounted
 
     useEffect(() => {
-        if (typeof window !== 'undefined') {
-            const ls = getTheme();
-            if (ls) {
-                document.querySelector('html')?.setAttribute('data-theme', 'dark');
-                setisDark(true);
-            } else {
-                document.querySelector('html')?.setAttribute('data-theme', 'default');
-                setisDark(false);
-            }
-        }
+        setMounted(true);
     }, []);
+
+    if (!mounted) {
+        return null;
+    }
 
     const scrollToView = (id: string, e: any) => {
         e.preventDefault();
@@ -71,7 +57,7 @@ const TopBar = () => {
                                 onClick={(e) => {
                                     scrollToView('myJourneyId', e);
                                 }}>
-                                Work
+                                Wor1
                             </a>
                         </li>
                         <li>
@@ -128,70 +114,71 @@ const TopBar = () => {
             </div>
             <div className='navbar-end'>
                 <div className='hidden sm:block'>
-                    {/* {isDark === 'true' ? 'true' : false} */}
-                    <button
-                        className='btn mr-2 btn-square'
-                        onClick={() => {
-                            window.open('https://www.linkedin.com/in/onur-altuntas1/', '_blank');
-                        }}>
-                        {isDark ? (
-                            <img
-                                src={`${pagesBasePath}/assets/images/linkedin-dark.png`}
-                                width={32}
-                                alt='linkedin'
-                                className='rounded shadow'
-                            />
-                        ) : (
-                            <img
-                                src={`${pagesBasePath}/assets/images/linkedin-light.png`}
-                                width={32}
-                                alt='linkedin'
-                                className='rounded shadow'
-                            />
-                        )}
-                    </button>
-                    <button
-                        className='btn mr-2 btn-square'
-                        onClick={() => {
-                            window.open('https://medium.com/@onuraltuntasbusiness_99398', '_blank');
-                        }}>
-                        {isDark ? (
-                            <img
-                                src={`${pagesBasePath}/assets/images/medium-dark.png`}
-                                width={32}
-                                alt='medium'
-                                className='rounded shadow'
-                            />
-                        ) : (
-                            <img
-                                src={`${pagesBasePath}/assets/images/medium-light.png`}
-                                width={32}
-                                alt='medium'
-                                className='rounded shadow'
-                            />
-                        )}
-                    </button>
-                    <button
-                        className='btn mr-2 btn-square'
-                        onClick={() => {
-                            window.open('https://github.com/onuraltuntasb', '_blank');
-                        }}>
-                        {isDark ? (
-                            <img
-                                src={`${pagesBasePath}/assets/images/github-dark.png`}
-                                width={32}
-                                alt='github'
-                                className='rounded shadow'
-                            />
-                        ) : (
-                            <img
-                                src={`${pagesBasePath}/assets/images/github-light.png`}
-                                width={32}
-                                alt='github'
-                                className='rounded shadow'
-                            />
-                        )}
-                    </button>
+                    {theme === 'dark' ? (
+                        <img
+                            className='btn mr-2 btn-square transition-opacity duration-500 ease-in-out'
+                            onClick={() => {
+                                window.open('https://www.linkedin.com/in/onur-altuntas1/', '_blank');
+                            }}
+                            src={`${pagesBasePath}/assets/images/linkedin-dark.png`}
+                            width={32}
+                            alt='linkedin'
+                        />
+                    ) : (
+                        <img
+                            className='btn mr-2 btn-square transition-opacity duration-500 ease-in-out'
+                            onClick={() => {
+                                window.open('https://www.linkedin.com/in/onur-altuntas1/', '_blank');
+                            }}
+                            src={`${pagesBasePath}/assets/images/linkedin-light.png`}
+                            width={32}
+                            alt='linkedin'
+                        />
+                    )}
+
+                    {theme === 'dark' ? (
+                        <img
+                            className='btn mr-2 btn-square transition-opacity duration-500 ease-in-out'
+                            onClick={() => {
+                                window.open('https://medium.com/@onuraltuntasbusiness_99398', '_blank');
+                            }}
+                            src={`${pagesBasePath}/assets/images/medium-dark.png`}
+                            width={32}
+                            alt='medium'
+                        />
+                    ) : (
+                        <img
+                            className='btn mr-2 btn-square transition-opacity duration-500 ease-in-out'
+                            onClick={() => {
+                                window.open('https://medium.com/@onuraltuntasbusiness_99398', '_blank');
+                            }}
+                            src={`${pagesBasePath}/assets/images/medium-light.png`}
+                            width={32}
+                            alt='medium'
+                        />
+                    )}
+
+                    {theme === 'dark' ? (
+                        <img
+                            className='btn mr-2 btn-square transition-opacity duration-500 ease-in-out'
+                            onClick={() => {
+                                window.open('https://github.com/onuraltuntasb', '_blank');
+                            }}
+                            src={`${pagesBasePath}/assets/images/github-dark.png`}
+                            width={32}
+                            alt='github'
+                        />
+                    ) : (
+                        <img
+                            className='btn mr-2 btn-square transition-opacity duration-500 ease-in-out'
+                            onClick={() => {
+                                window.open('https://github.com/onuraltuntasb', '_blank');
+                            }}
+                            src={`${pagesBasePath}/assets/images/github-light.png`}
+                            width={32}
+                            alt='github'
+                        />
+                    )}
                 </div>
                 <label className='swap swap-rotate'>
                     {/* this hidden checkbox controls the state */}
@@ -199,19 +186,8 @@ const TopBar = () => {
                         type='checkbox'
                         className='theme-controller'
                         value='dark'
-                        onChange={() => {
-                            const ls = getTheme();
-                            if (ls) {
-                                localStorage.setItem('isDark', JSON.stringify(false));
-                                document.querySelector('html')?.setAttribute('data-theme', 'default');
-                                setisDark(false);
-                            } else {
-                                localStorage.setItem('isDark', JSON.stringify(true));
-                                document.querySelector('html')?.setAttribute('data-theme', 'dark');
-
-                                setisDark(true);
-                            }
-                        }}
+                        checked={resolvedTheme === 'dark'}
+                        onChange={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
                     />
                     {/* sun icon */}
                     <svg
@@ -251,73 +227,73 @@ const TopBar = () => {
                             tabIndex={0}
                             className='dropdown-content menu z-1 mt-3 w-52 menu-sm rounded-box bg-base-100 p-2 shadow'>
                             <li>
-                                <button
-                                    className='btn mr-2 btn-square'
-                                    onClick={() => {
-                                        window.open('https://www.linkedin.com/in/onur-altuntas1/', '_blank');
-                                    }}>
-                                    {isDark ? (
-                                        <img
-                                            src={`${pagesBasePath}/assets/images/linkedin-dark.png`}
-                                            width={32}
-                                            alt='linkedin'
-                                            className='rounded shadow'
-                                        />
-                                    ) : (
-                                        <img
-                                            src={`${pagesBasePath}/assets/images/linkedin-light.png`}
-                                            width={32}
-                                            alt='linkedin'
-                                            className='rounded shadow'
-                                        />
-                                    )}
-                                </button>
+                                {theme === 'dark' ? (
+                                    <img
+                                        className='btn mr-2 btn-square transition-opacity duration-500 ease-in-out'
+                                        onClick={() => {
+                                            window.open('https://www.linkedin.com/in/onur-altuntas1/', '_blank');
+                                        }}
+                                        src={`${pagesBasePath}/assets/images/linkedin-dark.png`}
+                                        width={32}
+                                        alt='linkedin'
+                                    />
+                                ) : (
+                                    <img
+                                        className='btn mr-2 btn-square transition-opacity duration-500 ease-in-out'
+                                        onClick={() => {
+                                            window.open('https://www.linkedin.com/in/onur-altuntas1/', '_blank');
+                                        }}
+                                        src={`${pagesBasePath}/assets/images/linkedin-light.png`}
+                                        width={32}
+                                        alt='linkedin'
+                                    />
+                                )}
                             </li>
                             <li>
-                                <button
-                                    className='btn mr-2 btn-square'
-                                    onClick={() => {
-                                        window.open('https://medium.com/@onuraltuntasbusiness_99398', '_blank');
-                                    }}>
-                                    {isDark ? (
-                                        <img
-                                            src={`${pagesBasePath}/assets/images/medium-dark.png`}
-                                            width={32}
-                                            alt='medium'
-                                            className='rounded shadow'
-                                        />
-                                    ) : (
-                                        <img
-                                            src={`${pagesBasePath}/assets/images/medium-light.png`}
-                                            width={32}
-                                            alt='medium'
-                                            className='rounded shadow'
-                                        />
-                                    )}
-                                </button>
+                                {theme === 'dark' ? (
+                                    <img
+                                        className='btn mr-2 btn-square transition-opacity duration-500 ease-in-out'
+                                        onClick={() => {
+                                            window.open('https://medium.com/@onuraltuntasbusiness_99398', '_blank');
+                                        }}
+                                        src={`${pagesBasePath}/assets/images/medium-dark.png`}
+                                        width={32}
+                                        alt='medium'
+                                    />
+                                ) : (
+                                    <img
+                                        className='btn mr-2 btn-square transition-opacity duration-500 ease-in-out'
+                                        onClick={() => {
+                                            window.open('https://medium.com/@onuraltuntasbusiness_99398', '_blank');
+                                        }}
+                                        src={`${pagesBasePath}/assets/images/medium-light.png`}
+                                        width={32}
+                                        alt='medium'
+                                    />
+                                )}
                             </li>
                             <li>
-                                <button
-                                    className='btn mr-2 btn-square'
-                                    onClick={() => {
-                                        window.open('https://github.com/onuraltuntasb', '_blank');
-                                    }}>
-                                    {isDark ? (
-                                        <img
-                                            src={`${pagesBasePath}/assets/images/github-dark.png`}
-                                            width={32}
-                                            alt='github'
-                                            className='rounded shadow'
-                                        />
-                                    ) : (
-                                        <img
-                                            src={`${pagesBasePath}/assets/images/github-light.png`}
-                                            width={32}
-                                            alt='github'
-                                            className='rounded shadow'
-                                        />
-                                    )}
-                                </button>
+                                {theme === 'dark' ? (
+                                    <img
+                                        className='btn mr-2 btn-square transition-opacity duration-500 ease-in-out'
+                                        onClick={() => {
+                                            window.open('https://github.com/onuraltuntasb', '_blank');
+                                        }}
+                                        src={`${pagesBasePath}/assets/images/github-dark.png`}
+                                        width={32}
+                                        alt='github'
+                                    />
+                                ) : (
+                                    <img
+                                        className='btn mr-2 btn-square transition-opacity duration-500 ease-in-out'
+                                        onClick={() => {
+                                            window.open('https://github.com/onuraltuntasb', '_blank');
+                                        }}
+                                        src={`${pagesBasePath}/assets/images/github-light.png`}
+                                        width={32}
+                                        alt='github'
+                                    />
+                                )}
                             </li>
                         </ul>
                     </div>
